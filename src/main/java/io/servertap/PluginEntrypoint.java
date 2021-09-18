@@ -10,15 +10,18 @@ import io.servertap.api.v1.PlayerApi;
 import io.servertap.api.v1.ServerApi;
 import io.swagger.v3.oas.models.info.Info;
 import net.milkbowl.vault.economy.Economy;
-import org.bstats.bukkit.Metrics;
+//import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.java.JavaPluginLoader;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -37,10 +40,18 @@ public class PluginEntrypoint extends JavaPlugin {
     private static Economy econ = null;
     private static Javalin app = null;
 
+    public PluginEntrypoint() {
+        super();
+    }
+
+    public PluginEntrypoint(@NotNull JavaPluginLoader loader, @NotNull PluginDescriptionFile description, @NotNull File dataFolder, @NotNull File file) {
+        super(loader, description, dataFolder, file);
+    }
+
     @Override
     public void onEnable() {
         // Tell bStats what plugin this is
-        Metrics metrics = new Metrics(this, 9492);
+//        Metrics metrics = new Metrics(this, 9492);
 
         saveDefaultConfig();
         FileConfiguration bukkitConfig = getConfig();
